@@ -45,7 +45,7 @@ foreach ($palette as $paletteIndex => $paletteColor) {
     $lines[] = '<path stroke="#' . dechex($paletteColor) . '" d="' . implode('', $colorLines) . '"/>';
 }
 
-$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 ' . $width . ' ' . $height . '" shape-rendering="crispEdges">
+$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' . $width . ' ' . $height . '" shape-rendering="crispEdges">
 ' . implode(PHP_EOL, $lines) . '
 </svg>';
 
