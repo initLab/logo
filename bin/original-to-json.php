@@ -5,6 +5,19 @@ $baseDir = __DIR__ . '/..';
 $imgDir = $baseDir . '/img';
 $srcDir = $baseDir . '/src';
 
+$symbolMap = [
+    'ffe51b' => '⬝',
+    '2b2e34' => '■',
+    '3bb5e6' => '★',
+    'ffffff' => '☐',
+    '4c63b3' => '▲',
+    'a96eb6' => 'L',
+    'e83d71' => 'C',
+    'ee2c28' => '4',
+    'ff542d' => 'O',
+    'ff8939' => 'X',
+];
+
 $img = imagecreatefrompng($imgDir . '/logo-original.png');
 $w = imagesx($img);
 $h = imagesy($img);
@@ -47,6 +60,7 @@ for ($y = 0; $y < $h; $y += $coeffY) {
 // create palette
 
 $palette = [];
+$symbols = [];
 $pixels = [];
 
 for ($y = $coeffY / 2; $y < $h; $y += $coeffY) {
@@ -57,6 +71,7 @@ for ($y = $coeffY / 2; $y < $h; $y += $coeffY) {
 
 		if ($index === false) {
 			$palette[] = $color;
+            $symbols[] = $symbolMap[dechex($color)];
 			$row[] = count($palette) - 1;
 		}
 		else {
@@ -76,4 +91,4 @@ if ($debug) {
 
 imagedestroy($img);
 
-file_put_contents($srcDir . '/logo.json', json_encode(compact('palette', 'pixels')));
+file_put_contents($srcDir . '/logo.json', json_encode(compact('palette', 'symbols', 'pixels')));
